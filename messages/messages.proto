@@ -18,3 +18,41 @@
 syntax = "proto3";
 
 package axiom_integrations;
+
+// Details about a GitHub pull request to be summarised or reviewed.
+message PRDetails {
+  // The pull request title.
+  string pr_title = 1;
+  // The pull request body / description.
+  string pr_body = 2;
+  // The repository name in owner/repo format.
+  string repo = 3;
+  // The GitHub username of the PR author.
+  string author = 4;
+}
+
+// A one-paragraph LLM-generated summary of a pull request.
+message PRSummary {
+  // The generated summary text.
+  string summary = 1;
+  // The repository the PR belongs to.
+  string repo = 2;
+  // The pull request title.
+  string pr_title = 3;
+}
+
+// A message to post to a Slack channel via an incoming webhook.
+message SlackMessage {
+  // The message text to post. Slack mrkdwn formatting is supported.
+  string text = 1;
+  // Optional channel override. If empty, the webhook's default channel is used.
+  string channel = 2;
+}
+
+// The result of a Slack webhook post.
+message SlackResult {
+  // True if the message was accepted by Slack.
+  bool ok = 1;
+  // Error description if ok is false.
+  string error = 2;
+}
