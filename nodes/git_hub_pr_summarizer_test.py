@@ -1,5 +1,5 @@
 from gen.messages_pb2 import PRDetails, PRSummary
-from nodes.git_hub_p_r_summarizer import git_hub_p_r_summarizer
+from nodes.git_hub_pr_summarizer import git_hub_pr_summarizer
 
 
 class _NoOpLogger:
@@ -15,12 +15,12 @@ class _NoOpSecrets:
         return "", False
 
 
-def test_git_hub_p_r_summarizer_missing_secret():
+def test_git_hub_pr_summarizer_missing_secret():
     """Without a secret, the node should return an error summary."""
     log = _NoOpLogger()
     secrets = _NoOpSecrets()
     pr = PRDetails(pr_title="Add streaming", pr_body="Adds SSE support.", repo="axiom/axiom", author="alice")
-    result = git_hub_p_r_summarizer(log, secrets, pr)
+    result = git_hub_pr_summarizer(log, secrets, pr)
     assert isinstance(result, PRSummary)
     assert result.repo == "axiom/axiom"
     assert result.pr_title == "Add streaming"
