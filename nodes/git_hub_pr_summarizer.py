@@ -6,7 +6,7 @@ def git_hub_pr_summarizer(log: AxiomLogger, secrets: AxiomSecrets, input: PRDeta
     """Calls the Anthropic API to produce a one-paragraph plain-English summary of a pull request.
 
     Reads ANTHROPIC_API_KEY from secrets. Sends the PR title and body to
-    claude-3-5-haiku-20241022 and returns a concise summary suitable for
+    claude-haiku-4-5 and returns a concise summary suitable for
     posting to a team channel.
     """
     import anthropic
@@ -29,7 +29,7 @@ def git_hub_pr_summarizer(log: AxiomLogger, secrets: AxiomSecrets, input: PRDeta
 
     log.info("git_hub_pr_summarizer: calling Anthropic", repo=input.repo, pr=input.pr_title)
     message = client.messages.create(
-        model="claude-3-5-haiku-20241022",
+        model="claude-haiku-4-5",
         max_tokens=512,
         messages=[{"role": "user", "content": prompt}],
     )
