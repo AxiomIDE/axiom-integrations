@@ -46,7 +46,7 @@ message SlackMessage {
   // The message text to post. Slack mrkdwn formatting is supported.
   string text = 1;
   // Optional channel override. If empty, the webhook's default channel is used.
-  string channel = 2;
+  optional string channel = 2;
 }
 
 // The result of a Slack webhook post.
