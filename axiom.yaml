@@ -1,4 +1,4 @@
-name: axiom-integrations
+name: christian/axiom-integrations
 version: 0.1.0
 language: python
 description: Integration nodes for GitHub and Slack, including PR summarisation and channel notifications.
